@@ -10,16 +10,16 @@ let rain_val = document.querySelectorAll("#rain-val");
 
 const overlay = document.getElementById('overlay');
 
-function set_img_url(url_text){
+function set_img_url(url_text,img_code){
 	url_text = url_text.toLowerCase().trim();
-	if(url_text==="partly cloudy"){
+	if(img_code >=1003 && img_code <=1009){
 		url_text = "partly-cloudy";
-	}else if(url_text === "patchy rain nearby" || url_text === "light freezing rain"){
+	}else if((img_code >= 1063 && img_code <= 1201) || (img_code >= 1240 && img_code <= 1246)){
 		url_text = "patchy-rain-possible";
-	}else if(url_text ==="light snow" || url_text ==="heavy snow" || url_text ==="blowing snow"){
+	}else if((img_code >= 1066 && img_code <= 1225) || (img_code >= 1255 && img_code <= 1258)){
 		url_text = "light-snow";
-	}else if(url_text ==="rain"){
-		url_text = "patchy-rain-possible"
+	}else if(img_code >= 1273){
+		url_text = "moderate-or-heavy-rain-with-thunder"
 	}
 	let url = `https://www.aqi.in/media/weather-icons/${url_text}.svg`;
 	return url;
@@ -44,6 +44,7 @@ async function checkWeather(city){
 			msg_box.innerText="👉 City not found! ";
 			return false;
 		}else{
+			console.log(data)
 			area[0].innerText = data.location.name;
 			area[1].innerText = data.location.region;
 			area[2].innerText = data.location.country;
@@ -75,7 +76,7 @@ async function checkWeather(city){
 				time_temp.innerText = `${data.forecast.forecastday[0].hour[i].temp_c}${degree}`
 
 				let time_zone_img = document.createElement("img");
-				time_zone_img.src = set_img_url(data.forecast.forecastday[0].hour[i].condition.text)
+				time_zone_img.src = set_img_url(data.forecast.forecastday[0].hour[i].condition.text,data.forecast.forecastday[0].hour[i].condition.code)
 				
 				let today_time = new Date(data.forecast.forecastday[0].hour[i].time)
 				let hh = today_time.getHours().toString().padStart(2, '0');;
@@ -102,7 +103,8 @@ async function checkWeather(city){
 				day1.innerText = days[next_date.getDay()];
 				
 				let nextDateImg = document.createElement("img");
-				nextDateImg.src = set_img_url(data.forecast.forecastday[i].day.condition.text);
+				nextDateImg.src = set_img_url(data.forecast.forecastday[i].day.condition.text,data.forecast.forecastday[i].day.condition.code);
+				// console.log(data.forecast.forecastday[i].day.condition.code)
 				
 				let day_temp = document.createElement("span");
 				day_temp.id = "day-temp";
@@ -159,12 +161,12 @@ change_btn.addEventListener("click",()=>{
 })
 
 
-document.addEventListener('contextmenu', event => event.preventDefault());
-document.onkeydown = function(e) {
-    if (e.keyCode == 123 || (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0))) {
-        return false;
-    }else if(e.keyCode == 13){
-		start();
-	}
-};
+// document.addEventListener('contextmenu', event => event.preventDefault());
+// document.onkeydown = function(e) {
+//     if (e.keyCode == 123 || (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0))) {
+//         return false;
+//     }else if(e.keyCode == 13){
+// 		start();
+// 	}
+// };
 
