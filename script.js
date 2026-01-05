@@ -161,12 +161,12 @@ change_btn.addEventListener("click",()=>{
 })
 
 
-// document.addEventListener('contextmenu', event => event.preventDefault());
-// document.onkeydown = function(e) {
-//     if (e.keyCode == 123 || (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0))) {
-//         return false;
-//     }else if(e.keyCode == 13){
-// 		start();
-// 	}
-// };
+document.addEventListener('contextmenu', event => event.preventDefault());
+document.onkeydown = function(e) {
+    if (e.keyCode == 123 || (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0))) {
+        return false;
+    }else if(e.keyCode == 13){
+		start();
+	}
+};
 
