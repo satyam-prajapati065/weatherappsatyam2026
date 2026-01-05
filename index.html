@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="overlay">
+        <div class="loader-container">
+            <div class="loader"></div>
+            <p><strong>Please wait...</strong></p>
+        </div>
+    </div>
+    <div class="container">
+        <span></span>
+        <div class="current-page">
+            <img src="https://www.aqi.in/media/weather-icons/sunny.svg" alt="" id="curr-img">
+            <div class="text-box">
+                <h1>Daily <br> Weather</h1>
+                <span>Get to khow your weather maps and radar precipitation forecast</span>
+            </div>
+            <div class="input-box">
+                <input type="text" id="search" placeholder="" autofocus>
+                <label for="search">Enter City</label>
+            </div>
+            <div class="msg-box"></div>
+            <button id="st-btn">Get Started</button>
+        </div>
+        <div class="main-page">
+            <div class="main-content">
+                <div class="location-box">
+                    <p>
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span id="city-name"></span>
+                    </p>
+                    <span id="state-name"></span>
+                    <span id="country-name"></span>
+                </div>
+                <img alt="" id="curr-img" style="margin-bottom:2rem;margin-top: 1rem;">
+                <div id="day-date">
+                    <span></span>
+                    <span></span>
+                </div>
+                <h2 id="temprature"></h2>
+                <div class="rain-wind-humidity-box">
+                    <div class="rain">
+                        <img src="https://www.aqi.in/media/weather-icons/patchy-rain-possible.svg" alt="">
+                        <span id="rain-val"></span>
+                        <span id="con-name">Rain</span>
+                    </div>
+                    <div class="rain">
+                        <img src="https://www.svgrepo.com/show/466942/wind.svg" alt="">
+                        <span id="rain-val"></span>
+                        <span id="con-name">Wind</span>
+                    </div>
+                    <div class="rain">
+                        <img src="https://cdn-icons-png.flaticon.com/512/6142/6142706.png" alt="" width="75%">
+                        <span id="rain-val"></span>
+                        <span id="con-name">Humidity</span>
+                    </div>
+                </div>
+                <div class="today-forecast-con">
+                    <div class="today-header">
+                        <h3>Today</h3>
+                    </div>
+                    <div class="today-content">
+                    </div>
+                </div>
+                <div class="next-forecast-con">
+                    <div class="next-header">
+                        <h3>Next 7 day's Forecast</h3>
+                    </div>
+                    <div class="next-content">
+                    </div>
+                </div>    
+            </div>
+            <div class="changeLocation">
+                <button id="change-btn">Change Loaction</button>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <p id="copyright">&copy; 2025 <a href="https://www.instagram.com/webdevsatyam/">webdevsatyam</a>. All Rights Reserved.</p>
+    </footer>
+</body>
+<script src="script.js"></script>
+</html>
