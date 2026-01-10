@@ -27,7 +27,8 @@ function set_img_url(url_text,img_code){
 
 
 
-const apiKey = "c8ae809a9ca24108aa7123832252612";
+// const apiKey = "c8ae809a9ca24108aa7123832252612";
+const apiKey = "c8b0d804e5bc4bd7aec73625261001";
 const apiUrl = "https://api.weatherapi.com/v1/forecast.json?key=";
 
 let days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
@@ -38,13 +39,13 @@ async function checkWeather(city){
 	overlay.style.display = 'flex';
 
 	try{
-		const response = await fetch(apiUrl + `${apiKey}&q=${city}&days=7&aqi=yes`);
+		const response = await fetch(apiUrl + `${apiKey}&q=${city}&days=3&aqi=yes`);
 		var data = await response.json();
 		if(data.error){
 			msg_box.innerText="👉 City not found! ";
 			return false;
 		}else{
-			console.log(data)
+			// console.log(data)
 			area[0].innerText = data.location.name;
 			area[1].innerText = data.location.region;
 			area[2].innerText = data.location.country;
@@ -92,7 +93,7 @@ async function checkWeather(city){
 			let next_forecast_con = document.querySelector(".next-forecast-con .next-content");
 			next_forecast_con.innerHTML =""; 
 
-			for(let i=1; i<7; i++){
+			for(let i=1; i<3; i++){
 
 				let days_forecast = document.createElement("div")
 				days_forecast.classList.add("days-forecast")
