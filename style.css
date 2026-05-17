@@ -13,7 +13,7 @@ body {
     justify-content: center;
     align-items: center;
     background-color: #B5B9D8;
-    /* overflow: hidden; */
+    overflow: hidden;
 }
 
 .container {
