@@ -10,25 +10,24 @@ let rain_val = document.querySelectorAll("#rain-val");
 
 const overlay = document.getElementById('overlay');
 
-function set_img_url(url_text,img_code){
+function set_img_url(url_text){
 	url_text = url_text.toLowerCase().trim();
-	if(img_code >=1003 && img_code <=1009){
+	if(url_text==="partly cloudy"){
 		url_text = "partly-cloudy";
-	}else if((img_code >= 1063 && img_code <= 1201) || (img_code >= 1240 && img_code <= 1246)){
+	}else if(url_text === "patchy rain nearby" || url_text === "light freezing rain"){
 		url_text = "patchy-rain-possible";
-	}else if((img_code >= 1066 && img_code <= 1225) || (img_code >= 1255 && img_code <= 1258)){
+	}else if(url_text ==="light snow" || url_text ==="heavy snow" || url_text ==="blowing snow"){
 		url_text = "light-snow";
-	}else if(img_code >= 1273){
-		url_text = "moderate-or-heavy-rain-with-thunder"
+	}else if(url_text ==="rain"){
+		url_text = "patchy-rain-possible"
 	}
 	let url = `https://www.aqi.in/media/weather-icons/${url_text}.svg`;
 	return url;
 }
 
 
-
-// const apiKey = "c8ae809a9ca24108aa7123832252612";
-const apiKey = "c8b0d804e5bc4bd7aec73625261001";
+// const fullurl = "https://api.weatherapi.com/v1/forecast.json?key=fdd995354f654f91b9b24555261705&q=allahabad&days=7&aqi=yes";
+const apiKey = "fdd995354f654f91b9b24555261705";
 const apiUrl = "https://api.weatherapi.com/v1/forecast.json?key=";
 
 let days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
@@ -39,13 +38,12 @@ async function checkWeather(city){
 	overlay.style.display = 'flex';
 
 	try{
-		const response = await fetch(apiUrl + `${apiKey}&q=${city}&days=3&aqi=yes`);
+		const response = await fetch(apiUrl + `${apiKey}&q=${city}&days=7&aqi=yes`);
 		var data = await response.json();
 		if(data.error){
 			msg_box.innerText="👉 City not found! ";
 			return false;
 		}else{
-			// console.log(data)
 			area[0].innerText = data.location.name;
 			area[1].innerText = data.location.region;
 			area[2].innerText = data.location.country;
@@ -77,7 +75,7 @@ async function checkWeather(city){
 				time_temp.innerText = `${data.forecast.forecastday[0].hour[i].temp_c}${degree}`
 
 				let time_zone_img = document.createElement("img");
-				time_zone_img.src = set_img_url(data.forecast.forecastday[0].hour[i].condition.text,data.forecast.forecastday[0].hour[i].condition.code)
+				time_zone_img.src = set_img_url(data.forecast.forecastday[0].hour[i].condition.text)
 				
 				let today_time = new Date(data.forecast.forecastday[0].hour[i].time)
 				let hh = today_time.getHours().toString().padStart(2, '0');;
@@ -93,7 +91,7 @@ async function checkWeather(city){
 			let next_forecast_con = document.querySelector(".next-forecast-con .next-content");
 			next_forecast_con.innerHTML =""; 
 
-			for(let i=1; i<3; i++){
+			for(let i=1; i<7; i++){
 
 				let days_forecast = document.createElement("div")
 				days_forecast.classList.add("days-forecast")
@@ -104,8 +102,7 @@ async function checkWeather(city){
 				day1.innerText = days[next_date.getDay()];
 				
 				let nextDateImg = document.createElement("img");
-				nextDateImg.src = set_img_url(data.forecast.forecastday[i].day.condition.text,data.forecast.forecastday[i].day.condition.code);
-				// console.log(data.forecast.forecastday[i].day.condition.code)
+				nextDateImg.src = set_img_url(data.forecast.forecastday[i].day.condition.text);
 				
 				let day_temp = document.createElement("span");
 				day_temp.id = "day-temp";
