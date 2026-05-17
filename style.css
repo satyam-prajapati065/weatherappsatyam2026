@@ -13,7 +13,7 @@ body {
     justify-content: center;
     align-items: center;
     background-color: #B5B9D8;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .container {
@@ -25,26 +25,30 @@ body {
     overflow: hidden;
     position: relative;
 }
-@media screen and (max-width: 480px){
-    .container{
+
+@media screen and (max-width: 480px) {
+    .container {
         height: 90%;
         width: 95%;
     }
-    #copyright{
+
+    #copyright {
         font-size: 0.7rem;
     }
 }
+
 @media screen and (min-width: 769px) and (max-width: 1024px) {
-    .container{
+    .container {
         height: 90%;
         width: 80%;
     }
-    #copyright{
+
+    #copyright {
         font-size: larger;
     }
 }
 
-/* -------------Current Page Css Styling --->Start<------------------ */
+/* -------------Current Page Css Styling------------- */
 
 .current-page {
     height: 100%;
@@ -53,12 +57,10 @@ body {
     align-items: center;
     flex-direction: column;
     position: relative;
-    /* display: none; */
 }
 
 #curr-img {
     width: 63%;
-    /* height: 35%; */
     filter: drop-shadow(0px 0px 80px white);
     margin: 1.5rem 0rem 4rem 0rem;
 }
@@ -82,17 +84,16 @@ body {
     width: 75%;
     text-align: center;
     position: relative;
+}
 
-    label {
-        color: rgb(173, 172, 172);
-        position: absolute;
-        left: 0.5rem;
-        top: 1.6rem;
-        font-size: 0.8rem;
-        cursor: text;
-        transition: top 350ms ease-in,
-            font-size 350ms ease-in;
-    }
+.input-box label {
+    color: rgb(173, 172, 172);
+    position: absolute;
+    left: 0.5rem;
+    top: 1.6rem;
+    font-size: 0.8rem;
+    cursor: text;
+    transition: top 350ms ease-in, font-size 350ms ease-in;
 }
 
 #search:focus~label,
@@ -150,8 +151,8 @@ body {
     background-color: #417da7;
 }
 
-/* -------------Current Page Css Styling --->End<------------------ */
-/* -------------Main Page Css Styling --->Start<------------------ */
+/* -------------Main Page Css Styling------------- */
+
 .main-page {
     display: none;
 }
@@ -176,20 +177,18 @@ body {
     flex-direction: column;
     gap: 5px;
     margin-top: 1.2rem;
+}
 
-    p {
-        i {
-            color: #38acff;
-        }
-    }
+.main-content .location-box p i {
+    color: #38acff;
+}
 
-    #state-name {
-        color: #d8d6d6;
-    }
+#state-name {
+    color: #d8d6d6;
+}
 
-    #country-name {
-        color: #a4a1a1;
-    }
+#country-name {
+    color: #a4a1a1;
 }
 
 #temprature {
@@ -213,26 +212,26 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    img {
-        height: 3.8rem;
-        margin-top: 0.2rem;
-    }
+}
 
-    #rain-val {
-        font-weight: bold;
-        margin: 0.4rem 0rem;
-        font-size: 0.9rem;
-    }
+.rain-wind-humidity-box .rain img {
+    height: 3.8rem;
+    margin-top: 0.2rem;
+}
 
-    #con-name {
-        font-size: 0.8rem;
-        color: rgb(218, 217, 217);
-    }
+#rain-val {
+    font-weight: bold;
+    margin: 0.4rem 0rem;
+    font-size: 0.9rem;
+}
+
+#con-name {
+    font-size: 0.8rem;
+    color: rgb(218, 217, 217);
 }
 
 .today-forecast-con,
 .next-forecast-con {
-    /* height:12rem; */
     margin: 2rem 0rem;
     text-align: start;
     padding: 0.8rem;
@@ -246,7 +245,6 @@ body {
 }
 
 .today-forecast-con .today-content {
-    /* height:auto; */
     width: auto;
     display: flex;
     gap: 0.6rem;
@@ -265,20 +263,17 @@ body {
     margin-top: 0.5rem;
     text-align: center;
     font-size: 1.2rem;
-
-    img {
-        height: 4rem;
-        margin: 0.5rem 0;
-    }
 }
 
+.today-forecast-con .today-content .time-zone img {
+    height: 4rem;
+    margin: 0.5rem 0;
+}
 
 .next-forecast-con .next-content {
-    /* height:auto; */
     width: 100%;
     display: flex;
     flex-direction: column;
-
 }
 
 .next-forecast-con .next-content .days-forecast {
@@ -287,15 +282,16 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 0.5rem;
-
-    img {
-        height: 2rem;
-    }
 }
 
+.next-forecast-con .next-content .days-forecast img {
+    height: 2rem;
+}
+
+/* -------------Loader Overlay Styling (Container Scoped)------------- */
 
 #overlay {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -306,12 +302,16 @@ body {
     justify-content: center;
     align-items: center;
     z-index: 9999;
-    p{
-        position: absolute;
-        left: 47.2%;
-        top:55%;
-        color:#04092e;
-    }
+}
+
+#overlay p {
+    position: absolute;
+    left: 50%;
+    top: 58%;
+    transform: translate(-50%, -50%);
+    color: #04092e;
+    font-weight: bold;
+    white-space: nowrap;
 }
 
 .loader {
@@ -333,67 +333,16 @@ body {
     }
 }
 
-footer{
+footer {
     text-align: center;
     width: 100%;
     position: absolute;
     bottom: 2%;
-    p{
-        font-size:0.8rem;
-    }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+footer p {
+    font-size: 0.8rem;
+}
 
 .changeLocation {
     height: 3.2rem;
